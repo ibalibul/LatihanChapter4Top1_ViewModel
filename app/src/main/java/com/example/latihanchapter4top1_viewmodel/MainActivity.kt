@@ -1,9 +1,11 @@
 package com.example.latihanchapter4top1_viewmodel
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_berita.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +42,20 @@ class MainActivity : AppCompatActivity() {
         rvBerita2.layoutManager = lmberitaRekomen
         rvBerita2.adapter = beritaDua
 
+        beritaSatu.onClik = {
+            var pindah1 = Intent(this,DetailBeritaActivity::class.java)
+            pindah1.putExtra("Berita1",it)
+            startActivity(pindah1)
+        }
+
+        beritaDua.onClik = {
+            var pindah2 = Intent(this,DetailBeritaActivity::class.java)
+            pindah2.putExtra("Berita2",it)
+            startActivity(pindah2)
+        }
+
+
     }
+
 
 }

@@ -5,16 +5,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class BeritaAdapter(val listberita : ArrayList<ListBerita>) : RecyclerView.Adapter<BeritaAdapter.ViewHolder>() {
 
+
+    var onClik : ((ListBerita) -> Unit)? = null
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         var JudulBerita = view.findViewById<TextView>(R.id.tvJudulBerita)
         var TanggalBerita = view.findViewById<TextView>(R.id.tvtglBerita)
         var Jurnalis = view.findViewById<TextView>(R.id.tvJurnalisBerita)
         var imgberita = view.findViewById<ImageView>(R.id.imgBerita)
+        var card = view.findViewById<CardView>(R.id.cardView)
 
     }
 
@@ -28,6 +32,9 @@ class BeritaAdapter(val listberita : ArrayList<ListBerita>) : RecyclerView.Adapt
         holder.TanggalBerita.text = listberita[position].tanggalBerita
         holder.Jurnalis.text = listberita[position].jurnalis
         holder.imgberita.setImageResource(listberita[position].img)
+        holder.card.setOnClickListener{
+            onClik?.invoke(listberita[position])
+        }
     }
 
     override fun getItemCount(): Int {
